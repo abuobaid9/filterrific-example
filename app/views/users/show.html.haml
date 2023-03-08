@@ -1,0 +1,22 @@
+.row
+  .small-12.medium-6.columns
+    %p.callout.success= notice
+    .card
+      .card-divider
+        %h4 User Details
+      .card-section
+        %p
+          %strong First name:
+          = @user.first_name
+        %p
+          %strong Last name:
+          = @user.last_name
+        %p
+          %strong Address:
+          = @user.address
+        %p
+          %strong Email:
+          = @user.email
+    .button-group
+      = link_to 'Edit', edit_user_path(@user), class: 'button'
+      = link_to 'Back', users_path, class: 'button secondary'

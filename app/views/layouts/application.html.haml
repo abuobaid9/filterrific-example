@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Filterrific
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/foundation/6.7.3/css/foundation.min.css", :rel => "stylesheet"}/
+    %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/foundation/6.7.3/js/foundation.min.js"}
+  %body
+    %nav.top-bar
+      %ul.menu
+        %li= link_to 'Home', root_path
+        %li= link_to 'Products', products_path
+        %li= link_to 'Categories', categories_path
+    .grid-container
+      = yield

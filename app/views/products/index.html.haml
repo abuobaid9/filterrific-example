@@ -1,0 +1,24 @@
+.container.mt-5
+  .row
+    .col-md-8.offset-md-2
+      %h1.text-center Products
+      = form_for_filterrific @filterrific do |f|
+        .grid-x.grid-padding-x
+          .cell.medium-4
+            = f.label :search_query, "Search"
+            = f.text_field(:search_query, class: 'form-control', placeholder: 'Search')
+          .cell.medium-4
+            = f.label :sorted_by, "Sort by"
+            = f.select(:sorted_by, @filterrific.select_options[:sorted_by], {include_blank: 'Any'}, {class: 'form-control'})
+          .cell.medium-4
+            = f.label :with_category_id, "Filter by category"
+            = f.select(:with_category_id, @filterrific.select_options[:with_category_id], {include_blank: 'Any'}, {class: 'form-control'})
+          .cell.medium-4
+            = f.label :with_price_gte, "Price greater than or equal to"
+            = f.number_field(:with_price_gte, class: 'form-control', placeholder: 'Price')
+          .cell.medium-4
+            = f.label :with_price_lte, "Price Less than or equal to"
+            = f.number_field(:with_price_lte, class: 'form-control', placeholder: 'Price')
+        .text-center
+          = f.submit "Search", class: 'button success '
+      = render(partial: 'products/list', locals: { products: @products })

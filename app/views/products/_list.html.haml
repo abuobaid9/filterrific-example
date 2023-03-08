@@ -1,0 +1,25 @@
+.row
+  .small-12.medium-8.columns
+    #filterrific_results
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th name
+            %th desc
+            %th price
+            %th category
+        %tbody
+          - products.each do |f|
+            %tr
+              %td
+                = f.name
+              %td
+                = f.desc
+              %td
+                $ #{f.price}
+              %td
+                = f.category.name
+.row
+  .small-12.columns
+    = link_to 'New Product', new_product_path, class: 'button success'
+= will_paginate @products , renderer: BootstrapPagination::Rails

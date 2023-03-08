@@ -1,0 +1,14 @@
+.container.mt-5
+  .row
+    .col-md-8.offset-md-2
+      %h1.text-center Users
+      = form_for_filterrific @filterrific do |f|
+        .input-group
+          = f.text_field(                                              |
+              :search_query,                                           |
+              class: 'filterrific-periodically-observed form-control', |
+              placeholder: 'Search'                                    |
+            )                                                          |
+          .input-group-append
+            = f.submit "Search", class: 'button primary'
+      = render partial: 'users/list', locals: { users: @users }
