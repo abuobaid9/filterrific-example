@@ -13627,3 +13627,2110 @@ Processing by ProductsController#index as HTML
 Completed 200 OK in 9ms (Views: 3.8ms | ActiveRecord: 1.2ms | Allocations: 7648)
 
 
+Started GET "/products" for ::1 at 2023-03-09 15:20:48 +0300
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProductsController#index as HTML
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:12
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:21
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:21
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:21
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:21
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:21
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:25
+  Rendered products/_list.html.haml (Duration: 31.3ms | Allocations: 22133)
+  Rendered products/index.html.haml within layouts/application (Duration: 38.6ms | Allocations: 40791)
+  Rendered layout layouts/application.html.haml (Duration: 49.8ms | Allocations: 57068)
+Completed 200 OK in 64ms (Views: 44.2ms | ActiveRecord: 9.7ms | Allocations: 68774)
+
+
+Started GET "/products/new" for ::1 at 2023-03-09 15:20:51 +0300
+Processing by ProductsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering products/new.html.haml within layouts/application
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/products/_form.html.haml:8
+  Rendered products/_form.html.haml (Duration: 160.5ms | Allocations: 298659)
+  Rendered products/new.html.haml within layouts/application (Duration: 162.8ms | Allocations: 301401)
+  Rendered layout layouts/application.html.haml (Duration: 164.5ms | Allocations: 304568)
+Completed 200 OK in 166ms (Views: 164.0ms | ActiveRecord: 0.8ms | Allocations: 305376)
+
+
+Started POST "/products" for ::1 at 2023-03-09 15:21:18 +0300
+Processing by ProductsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "product"=>{"name"=>"Samsung Galaxy S9", "desc"=>"Samsung Galaxy S9 128 Gb", "price"=>"444", "category_id"=>"6"}, "commit"=>"Create Product"}
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/products_controller.rb:43:in `block in create'
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:43:in `block in create'
+  [1m[36mProduct Create (1.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "desc", "price", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Samsung Galaxy S9"], ["desc", "Samsung Galaxy S9 128 Gb"], ["price", "444.0"], ["category_id", 6], ["created_at", "2023-03-09 12:21:18.307631"], ["updated_at", "2023-03-09 12:21:18.307631"]]
+  ↳ app/controllers/products_controller.rb:43:in `block in create'
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/products_controller.rb:43:in `block in create'
+Redirected to http://localhost:3000/products/10
+Completed 302 Found in 11ms (ActiveRecord: 5.9ms | Allocations: 5136)
+
+
+Started GET "/products/10" for ::1 at 2023-03-09 15:21:18 +0300
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  Rendering layout layouts/application.html.haml
+  Rendering products/show.html.haml within layouts/application
+  Rendered products/show.html.haml within layouts/application (Duration: 2.4ms | Allocations: 5219)
+  Rendered layout layouts/application.html.haml (Duration: 4.1ms | Allocations: 8263)
+Completed 200 OK in 7ms (Views: 4.5ms | ActiveRecord: 0.4ms | Allocations: 9852)
+
+
+Started GET "/products" for ::1 at 2023-03-09 15:21:20 +0300
+Processing by ProductsController#index as HTML
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:12
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:21
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:21
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:21
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:21
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:21
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:25
+  Rendered products/_list.html.haml (Duration: 7.9ms | Allocations: 5820)
+  Rendered products/index.html.haml within layouts/application (Duration: 8.8ms | Allocations: 7269)
+  Rendered layout layouts/application.html.haml (Duration: 11.4ms | Allocations: 10313)
+Completed 200 OK in 14ms (Views: 9.3ms | ActiveRecord: 2.8ms | Allocations: 12181)
+
+
+Started GET "/products?page=2" for ::1 at 2023-03-09 15:21:33 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 5]]
+  ↳ app/views/products/_list.html.haml:12
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:21
+  Rendered products/_list.html.haml (Duration: 2.8ms | Allocations: 2059)
+  Rendered products/index.html.haml within layouts/application (Duration: 3.6ms | Allocations: 3446)
+  Rendered layout layouts/application.html.haml (Duration: 5.3ms | Allocations: 6488)
+Completed 200 OK in 8ms (Views: 4.6ms | ActiveRecord: 1.4ms | Allocations: 8239)
+
+
+Started GET "/products?page=1" for ::1 at 2023-03-09 15:21:34 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"page"=>"1"}
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:12
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:21
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:21
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:21
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:21
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:21
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:25
+  Rendered products/_list.html.haml (Duration: 6.1ms | Allocations: 5680)
+  Rendered products/index.html.haml within layouts/application (Duration: 6.9ms | Allocations: 7069)
+  Rendered layout layouts/application.html.haml (Duration: 8.6ms | Allocations: 10111)
+Completed 200 OK in 11ms (Views: 6.9ms | ActiveRecord: 2.4ms | Allocations: 11864)
+
+
+Started GET "/" for ::1 at 2023-03-09 15:24:42 +0300
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/users/_list.html.haml:16
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/_list.html.haml:28
+  Rendered users/_list.html.haml (Duration: 16.1ms | Allocations: 17879)
+  Rendered users/index.html.haml within layouts/application (Duration: 23.3ms | Allocations: 29672)
+  Rendered layout layouts/application.html.haml (Duration: 160.6ms | Allocations: 98410)
+Completed 200 OK in 168ms (Views: 157.4ms | ActiveRecord: 4.9ms | Allocations: 103337)
+
+
+Started DELETE "/users/2" for ::1 at 2023-03-09 15:24:46 +0300
+Processing by UsersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:73:in `set_user'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:62:in `destroy'
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/users_controller.rb:62:in `destroy'
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:62:in `destroy'
+Redirected to http://localhost:3000/users
+Completed 302 Found in 8ms (ActiveRecord: 4.7ms | Allocations: 4211)
+
+
+Started GET "/users" for ::1 at 2023-03-09 15:24:46 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/users/_list.html.haml:16
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/_list.html.haml:28
+  Rendered users/_list.html.haml (Duration: 3.5ms | Allocations: 2743)
+  Rendered users/index.html.haml within layouts/application (Duration: 4.0ms | Allocations: 3187)
+  Rendered layout layouts/application.html.haml (Duration: 7.1ms | Allocations: 7434)
+Completed 200 OK in 8ms (Views: 6.4ms | ActiveRecord: 1.1ms | Allocations: 8133)
+
+
+Started GET "/products" for ::1 at 2023-03-09 15:24:49 +0300
+Processing by ProductsController#index as HTML
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:12
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:21
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:21
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:21
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:21
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:21
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:25
+  Rendered products/_list.html.haml (Duration: 18.1ms | Allocations: 21278)
+  Rendered products/index.html.haml within layouts/application (Duration: 23.9ms | Allocations: 33712)
+  Rendered layout layouts/application.html.haml (Duration: 26.6ms | Allocations: 37998)
+Completed 200 OK in 44ms (Views: 22.4ms | ActiveRecord: 13.9ms | Allocations: 45926)
+
+
+Started GET "/products" for ::1 at 2023-03-09 15:25:20 +0300
+Processing by ProductsController#index as HTML
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 12.4ms | Allocations: 16069)
+  Rendered products/index.html.haml within layouts/application (Duration: 18.5ms | Allocations: 27861)
+  Rendered layout layouts/application.html.haml (Duration: 24.4ms | Allocations: 39781)
+Completed 200 OK in 29ms (Views: 22.4ms | ActiveRecord: 3.2ms | Allocations: 42655)
+
+
+Started DELETE "/products/3" for ::1 at 2023-03-09 15:25:26 +0300
+Processing by ProductsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"3"}
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/products_controller.rb:68:in `destroy'
+  [1m[36mProduct Destroy (0.4ms)[0m  [1m[31mDELETE FROM "products" WHERE "products"."id" = $1[0m  [["id", 3]]
+  ↳ app/controllers/products_controller.rb:68:in `destroy'
+  [1m[36mTRANSACTION (3.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/products_controller.rb:68:in `destroy'
+Redirected to http://localhost:3000/products
+Completed 302 Found in 9ms (ActiveRecord: 5.0ms | Allocations: 3282)
+
+
+Started GET "/products" for ::1 at 2023-03-09 15:25:26 +0300
+Processing by ProductsController#index as HTML
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 7.5ms | Allocations: 6043)
+  Rendered products/index.html.haml within layouts/application (Duration: 8.5ms | Allocations: 7430)
+  Rendered layout layouts/application.html.haml (Duration: 10.9ms | Allocations: 11479)
+Completed 200 OK in 14ms (Views: 8.7ms | ActiveRecord: 2.9ms | Allocations: 13246)
+
+
+Started GET "/products/new" for ::1 at 2023-03-09 15:25:28 +0300
+Processing by ProductsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering products/new.html.haml within layouts/application
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/products/_form.html.haml:8
+  Rendered products/_form.html.haml (Duration: 21.4ms | Allocations: 25977)
+  Rendered products/new.html.haml within layouts/application (Duration: 23.4ms | Allocations: 28639)
+  Rendered layout layouts/application.html.haml (Duration: 26.0ms | Allocations: 32840)
+Completed 200 OK in 28ms (Views: 25.8ms | ActiveRecord: 0.6ms | Allocations: 33533)
+
+
+Started POST "/products" for ::1 at 2023-03-09 15:25:59 +0300
+Processing by ProductsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "product"=>{"name"=>"Samsung Galaxy S10", "desc"=>"Samsung Galaxy S10 256Gb", "price"=>"550", "category_id"=>"6"}, "commit"=>"Create Product"}
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/products_controller.rb:43:in `block in create'
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:43:in `block in create'
+  [1m[36mProduct Create (0.7ms)[0m  [1m[32mINSERT INTO "products" ("name", "desc", "price", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Samsung Galaxy S10"], ["desc", "Samsung Galaxy S10 256Gb"], ["price", "550.0"], ["category_id", 6], ["created_at", "2023-03-09 12:25:59.640595"], ["updated_at", "2023-03-09 12:25:59.640595"]]
+  ↳ app/controllers/products_controller.rb:43:in `block in create'
+  [1m[36mTRANSACTION (3.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/products_controller.rb:43:in `block in create'
+Redirected to http://localhost:3000/products/11
+Completed 302 Found in 11ms (ActiveRecord: 5.2ms | Allocations: 4869)
+
+
+Started GET "/products/11" for ::1 at 2023-03-09 15:25:59 +0300
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  Rendering layout layouts/application.html.haml
+  Rendering products/show.html.haml within layouts/application
+  Rendered products/show.html.haml within layouts/application (Duration: 2.5ms | Allocations: 5208)
+  Rendered layout layouts/application.html.haml (Duration: 5.2ms | Allocations: 9298)
+Completed 200 OK in 9ms (Views: 5.5ms | ActiveRecord: 0.7ms | Allocations: 10697)
+
+
+Started GET "/products" for ::1 at 2023-03-09 15:26:01 +0300
+Processing by ProductsController#index as HTML
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 7.5ms | Allocations: 6154)
+  Rendered products/index.html.haml within layouts/application (Duration: 8.4ms | Allocations: 7603)
+  Rendered layout layouts/application.html.haml (Duration: 11.0ms | Allocations: 11654)
+Completed 200 OK in 14ms (Views: 9.3ms | ActiveRecord: 2.5ms | Allocations: 13544)
+
+
+Started GET "/products/8/edit" for ::1 at 2023-03-09 15:26:10 +0300
+Processing by ProductsController#edit as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  Rendering layout layouts/application.html.haml
+  Rendering products/edit.html.haml within layouts/application
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/products/_form.html.haml:8
+  Rendered products/_form.html.haml (Duration: 9.9ms | Allocations: 10614)
+  Rendered products/edit.html.haml within layouts/application (Duration: 11.7ms | Allocations: 13478)
+  Rendered layout layouts/application.html.haml (Duration: 14.0ms | Allocations: 17549)
+Completed 200 OK in 17ms (Views: 13.6ms | ActiveRecord: 1.5ms | Allocations: 18872)
+
+
+Started PATCH "/products/8" for ::1 at 2023-03-09 15:26:13 +0300
+Processing by ProductsController#update as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "product"=>{"name"=>"laptob", "desc"=>"dell core  i5", "price"=>"800.0", "category_id"=>"1"}, "commit"=>"Update Product", "id"=>"8"}
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+  [1m[36mProduct Update (0.6ms)[0m  [1m[33mUPDATE "products" SET "category_id" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["category_id", 1], ["updated_at", "2023-03-09 12:26:13.830165"], ["id", 8]]
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+Redirected to http://localhost:3000/products/8
+Completed 302 Found in 11ms (ActiveRecord: 5.7ms | Allocations: 4853)
+
+
+Started GET "/products/8" for ::1 at 2023-03-09 15:26:13 +0300
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  Rendering layout layouts/application.html.haml
+  Rendering products/show.html.haml within layouts/application
+  Rendered products/show.html.haml within layouts/application (Duration: 4.7ms | Allocations: 96)
+  Rendered layout layouts/application.html.haml (Duration: 7.6ms | Allocations: 4187)
+Completed 200 OK in 10ms (Views: 8.0ms | ActiveRecord: 0.4ms | Allocations: 5384)
+
+
+Started GET "/products" for ::1 at 2023-03-09 15:26:17 +0300
+Processing by ProductsController#index as HTML
+  [1m[36mCategory Load (1.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 11.1ms | Allocations: 6353)
+  Rendered products/index.html.haml within layouts/application (Duration: 12.9ms | Allocations: 7746)
+  Rendered layout layouts/application.html.haml (Duration: 15.2ms | Allocations: 11795)
+Completed 200 OK in 22ms (Views: 12.7ms | ActiveRecord: 4.1ms | Allocations: 14046)
+
+
+Started GET "/products/9/edit" for ::1 at 2023-03-09 15:26:24 +0300
+Processing by ProductsController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  Rendering layout layouts/application.html.haml
+  Rendering products/edit.html.haml within layouts/application
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/products/_form.html.haml:8
+  Rendered products/_form.html.haml (Duration: 10.0ms | Allocations: 10604)
+  Rendered products/edit.html.haml within layouts/application (Duration: 10.3ms | Allocations: 10760)
+  Rendered layout layouts/application.html.haml (Duration: 12.7ms | Allocations: 14838)
+Completed 200 OK in 15ms (Views: 12.3ms | ActiveRecord: 1.3ms | Allocations: 16118)
+
+
+Started PATCH "/products/9" for ::1 at 2023-03-09 15:26:28 +0300
+Processing by ProductsController#update as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "product"=>{"name"=>"watch s9", "desc"=>"samsung", "price"=>"270.0", "category_id"=>"40"}, "commit"=>"Update Product", "id"=>"9"}
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+  [1m[36mProduct Update (0.6ms)[0m  [1m[33mUPDATE "products" SET "category_id" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["category_id", 40], ["updated_at", "2023-03-09 12:26:28.226390"], ["id", 9]]
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+  [1m[36mTRANSACTION (3.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+Redirected to http://localhost:3000/products/9
+Completed 302 Found in 11ms (ActiveRecord: 5.7ms | Allocations: 4701)
+
+
+Started GET "/products/9" for ::1 at 2023-03-09 15:26:28 +0300
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  Rendering layout layouts/application.html.haml
+  Rendering products/show.html.haml within layouts/application
+  Rendered products/show.html.haml within layouts/application (Duration: 0.2ms | Allocations: 96)
+  Rendered layout layouts/application.html.haml (Duration: 2.8ms | Allocations: 4185)
+Completed 200 OK in 5ms (Views: 3.1ms | ActiveRecord: 0.5ms | Allocations: 5381)
+
+
+Started GET "/products" for ::1 at 2023-03-09 15:26:29 +0300
+Processing by ProductsController#index as HTML
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 8.3ms | Allocations: 6622)
+  Rendered products/index.html.haml within layouts/application (Duration: 9.2ms | Allocations: 8009)
+  Rendered layout layouts/application.html.haml (Duration: 11.9ms | Allocations: 12058)
+Completed 200 OK in 15ms (Views: 9.3ms | ActiveRecord: 3.3ms | Allocations: 13814)
+
+
+Started GET "/products?page=2" for ::1 at 2023-03-09 15:26:32 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 5]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  Rendered products/_list.html.haml (Duration: 2.9ms | Allocations: 2194)
+  Rendered products/index.html.haml within layouts/application (Duration: 3.9ms | Allocations: 3581)
+  Rendered layout layouts/application.html.haml (Duration: 6.1ms | Allocations: 7659)
+Completed 200 OK in 9ms (Views: 5.2ms | ActiveRecord: 1.7ms | Allocations: 9413)
+
+
+Started GET "/products?page=1" for ::1 at 2023-03-09 15:26:46 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"page"=>"1"}
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 11.6ms | Allocations: 6759)
+  Rendered products/index.html.haml within layouts/application (Duration: 12.6ms | Allocations: 8147)
+  Rendered layout layouts/application.html.haml (Duration: 15.6ms | Allocations: 12566)
+Completed 200 OK in 19ms (Views: 12.9ms | ActiveRecord: 3.7ms | Allocations: 14350)
+
+
+Started GET "/products?page=2" for ::1 at 2023-03-09 15:27:00 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 5]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.9ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  Rendered products/_list.html.haml (Duration: 5.1ms | Allocations: 2193)
+  Rendered products/index.html.haml within layouts/application (Duration: 6.8ms | Allocations: 3598)
+  Rendered layout layouts/application.html.haml (Duration: 11.1ms | Allocations: 8132)
+Completed 200 OK in 16ms (Views: 9.7ms | ActiveRecord: 2.7ms | Allocations: 9888)
+
+
+Started GET "/products/2/edit" for ::1 at 2023-03-09 15:27:03 +0300
+Processing by ProductsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  Rendering layout layouts/application.html.haml
+  Rendering products/edit.html.haml within layouts/application
+  [1m[36mCategory Load (1.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/products/_form.html.haml:8
+  Rendered products/_form.html.haml (Duration: 10.8ms | Allocations: 10967)
+  Rendered products/edit.html.haml within layouts/application (Duration: 11.1ms | Allocations: 11130)
+  Rendered layout layouts/application.html.haml (Duration: 14.5ms | Allocations: 15260)
+Completed 200 OK in 17ms (Views: 13.6ms | ActiveRecord: 1.6ms | Allocations: 16450)
+
+
+Started PATCH "/products/2" for ::1 at 2023-03-09 15:27:27 +0300
+Processing by ProductsController#update as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "product"=>{"name"=>"Lenovo", "desc"=>"Core i3 12gen", "price"=>"280", "category_id"=>"1"}, "commit"=>"Update Product", "id"=>"2"}
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+  [1m[36mProduct Update (0.6ms)[0m  [1m[33mUPDATE "products" SET "name" = $1, "desc" = $2, "price" = $3, "updated_at" = $4 WHERE "products"."id" = $5[0m  [["name", "Lenovo"], ["desc", "Core i3 12gen"], ["price", "280.0"], ["updated_at", "2023-03-09 12:27:27.555724"], ["id", 2]]
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+Redirected to http://localhost:3000/products/2
+Completed 302 Found in 10ms (ActiveRecord: 5.6ms | Allocations: 4723)
+
+
+Started GET "/products/2" for ::1 at 2023-03-09 15:27:27 +0300
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  Rendering layout layouts/application.html.haml
+  Rendering products/show.html.haml within layouts/application
+  Rendered products/show.html.haml within layouts/application (Duration: 0.2ms | Allocations: 96)
+  Rendered layout layouts/application.html.haml (Duration: 2.7ms | Allocations: 4185)
+Completed 200 OK in 5ms (Views: 3.0ms | ActiveRecord: 0.4ms | Allocations: 5383)
+
+
+Started GET "/products" for ::1 at 2023-03-09 15:27:29 +0300
+Processing by ProductsController#index as HTML
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 9.6ms | Allocations: 6763)
+  Rendered products/index.html.haml within layouts/application (Duration: 10.6ms | Allocations: 8152)
+  Rendered layout layouts/application.html.haml (Duration: 13.6ms | Allocations: 12576)
+Completed 200 OK in 17ms (Views: 11.0ms | ActiveRecord: 3.5ms | Allocations: 14365)
+
+
+Started GET "/products?page=2" for ::1 at 2023-03-09 15:27:32 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 5]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  Rendered products/_list.html.haml (Duration: 2.9ms | Allocations: 2193)
+  Rendered products/index.html.haml within layouts/application (Duration: 3.9ms | Allocations: 3580)
+  Rendered layout layouts/application.html.haml (Duration: 6.3ms | Allocations: 7629)
+Completed 200 OK in 9ms (Views: 5.6ms | ActiveRecord: 1.4ms | Allocations: 9382)
+
+
+Started GET "/categories" for ::1 at 2023-03-09 15:29:25 +0300
+Processing by CategoriesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering categories/index.html.haml within layouts/application
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/categories/index.html.haml:12
+  Rendered categories/index.html.haml within layouts/application (Duration: 9.5ms | Allocations: 9019)
+  Rendered layout layouts/application.html.haml (Duration: 12.8ms | Allocations: 13447)
+Completed 200 OK in 15ms (Views: 13.2ms | ActiveRecord: 0.6ms | Allocations: 14761)
+
+
+Started GET "/categories" for ::1 at 2023-03-09 15:30:13 +0300
+Processing by CategoriesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering categories/index.html.haml within layouts/application
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/categories/index.html.haml:13
+  Rendered categories/index.html.haml within layouts/application (Duration: 5.2ms | Allocations: 8927)
+  Rendered layout layouts/application.html.haml (Duration: 11.9ms | Allocations: 20835)
+Completed 200 OK in 14ms (Views: 12.5ms | ActiveRecord: 0.5ms | Allocations: 22292)
+
+
+Started GET "/categories" for ::1 at 2023-03-09 15:30:26 +0300
+Processing by CategoriesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering categories/index.html.haml within layouts/application
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/categories/index.html.haml:13
+  Rendered categories/index.html.haml within layouts/application (Duration: 2.4ms | Allocations: 2018)
+  Rendered layout layouts/application.html.haml (Duration: 5.0ms | Allocations: 6068)
+Completed 200 OK in 6ms (Views: 4.8ms | ActiveRecord: 0.5ms | Allocations: 6594)
+
+
+Started GET "/products" for ::1 at 2023-03-09 15:30:41 +0300
+Processing by ProductsController#index as HTML
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 12.8ms | Allocations: 16421)
+  Rendered products/index.html.haml within layouts/application (Duration: 19.1ms | Allocations: 28254)
+  Rendered layout layouts/application.html.haml (Duration: 22.8ms | Allocations: 32528)
+Completed 200 OK in 27ms (Views: 20.9ms | ActiveRecord: 3.6ms | Allocations: 35581)
+
+
+Started GET "/" for ::1 at 2023-03-09 15:30:43 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/users/_list.html.haml:16
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/_list.html.haml:28
+  Rendered users/_list.html.haml (Duration: 12.9ms | Allocations: 12575)
+  Rendered users/index.html.haml within layouts/application (Duration: 16.4ms | Allocations: 18101)
+  Rendered layout layouts/application.html.haml (Duration: 19.3ms | Allocations: 22380)
+Completed 200 OK in 21ms (Views: 18.5ms | ActiveRecord: 1.7ms | Allocations: 23660)
+
+
+Started GET "/products" for ::1 at 2023-03-09 15:32:03 +0300
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProductsController#index as HTML
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 24.3ms | Allocations: 26343)
+  Rendered products/index.html.haml within layouts/application (Duration: 32.3ms | Allocations: 44996)
+  Rendered layout layouts/application.html.haml (Duration: 53.7ms | Allocations: 62337)
+Completed 200 OK in 71ms (Views: 48.3ms | ActiveRecord: 10.3ms | Allocations: 74039)
+
+
+Started GET "/products" for ::1 at 2023-03-09 15:32:03 +0300
+Processing by ProductsController#index as HTML
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 8.6ms | Allocations: 6782)
+  Rendered products/index.html.haml within layouts/application (Duration: 9.6ms | Allocations: 8268)
+  Rendered layout layouts/application.html.haml (Duration: 12.3ms | Allocations: 12440)
+Completed 200 OK in 15ms (Views: 9.6ms | ActiveRecord: 3.5ms | Allocations: 14546)
+
+
+Started GET "/" for ::1 at 2023-03-09 15:32:04 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/users/_list.html.haml:16
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/_list.html.haml:28
+  Rendered users/_list.html.haml (Duration: 14.4ms | Allocations: 15757)
+  Rendered users/index.html.haml within layouts/application (Duration: 17.4ms | Allocations: 21311)
+  Rendered layout layouts/application.html.haml (Duration: 26.7ms | Allocations: 25609)
+Completed 200 OK in 29ms (Views: 24.2ms | ActiveRecord: 3.3ms | Allocations: 27657)
+
+
+Started GET "/" for ::1 at 2023-03-09 15:32:05 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/users/_list.html.haml:16
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/_list.html.haml:28
+  Rendered users/_list.html.haml (Duration: 3.9ms | Allocations: 2642)
+  Rendered users/index.html.haml within layouts/application (Duration: 4.4ms | Allocations: 3036)
+  Rendered layout layouts/application.html.haml (Duration: 7.0ms | Allocations: 7142)
+Completed 200 OK in 8ms (Views: 6.1ms | ActiveRecord: 1.3ms | Allocations: 7820)
+
+
+Started GET "/products" for ::1 at 2023-03-09 15:32:17 +0300
+Processing by ProductsController#index as HTML
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 8.0ms | Allocations: 6680)
+  Rendered products/index.html.haml within layouts/application (Duration: 8.9ms | Allocations: 8109)
+  Rendered layout layouts/application.html.haml (Duration: 11.7ms | Allocations: 12159)
+Completed 200 OK in 15ms (Views: 9.3ms | ActiveRecord: 3.2ms | Allocations: 14001)
+
+
+Started GET "/categories" for ::1 at 2023-03-09 15:32:18 +0300
+Processing by CategoriesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering categories/index.html.haml within layouts/application
+  [1m[36mCategory Load (0.9ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/categories/index.html.haml:13
+  Rendered categories/index.html.haml within layouts/application (Duration: 8.0ms | Allocations: 9177)
+  Rendered layout layouts/application.html.haml (Duration: 10.9ms | Allocations: 13439)
+Completed 200 OK in 14ms (Views: 11.6ms | ActiveRecord: 0.9ms | Allocations: 14832)
+
+
+Started GET "/products" for ::1 at 2023-03-09 15:32:22 +0300
+Processing by ProductsController#index as HTML
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (1.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 11.4ms | Allocations: 7284)
+  Rendered products/index.html.haml within layouts/application (Duration: 12.3ms | Allocations: 8736)
+  Rendered layout layouts/application.html.haml (Duration: 15.0ms | Allocations: 12850)
+Completed 200 OK in 19ms (Views: 11.4ms | ActiveRecord: 4.5ms | Allocations: 14772)
+
+
+Started GET "/products?page=2" for ::1 at 2023-03-09 15:32:25 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 5]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  Rendered products/_list.html.haml (Duration: 3.9ms | Allocations: 2561)
+  Rendered products/index.html.haml within layouts/application (Duration: 4.8ms | Allocations: 3957)
+  Rendered layout layouts/application.html.haml (Duration: 7.9ms | Allocations: 8166)
+Completed 200 OK in 11ms (Views: 6.8ms | ActiveRecord: 1.8ms | Allocations: 9943)
+
+
+Started GET "/products/new" for ::1 at 2023-03-09 15:32:27 +0300
+Processing by ProductsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering products/new.html.haml within layouts/application
+  [1m[36mCategory Load (0.9ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/products/_form.html.haml:8
+  Rendered products/_form.html.haml (Duration: 61.0ms | Allocations: 24533)
+  Rendered products/new.html.haml within layouts/application (Duration: 62.8ms | Allocations: 27197)
+  Rendered layout layouts/application.html.haml (Duration: 66.4ms | Allocations: 31567)
+Completed 200 OK in 67ms (Views: 65.9ms | ActiveRecord: 0.9ms | Allocations: 32263)
+
+
+Started POST "/products" for ::1 at 2023-03-09 15:32:54 +0300
+Processing by ProductsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "product"=>{"name"=>"Lg Tv 65\"", "desc"=>"4k Tv ", "price"=>"1000", "category_id"=>"5"}, "commit"=>"Create Product"}
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/products_controller.rb:43:in `block in create'
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:43:in `block in create'
+  [1m[36mProduct Create (0.8ms)[0m  [1m[32mINSERT INTO "products" ("name", "desc", "price", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Lg Tv 65\""], ["desc", "4k Tv "], ["price", "1000.0"], ["category_id", 5], ["created_at", "2023-03-09 12:32:54.068098"], ["updated_at", "2023-03-09 12:32:54.068098"]]
+  ↳ app/controllers/products_controller.rb:43:in `block in create'
+  [1m[36mTRANSACTION (3.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/products_controller.rb:43:in `block in create'
+Redirected to http://localhost:3000/products/12
+Completed 302 Found in 11ms (ActiveRecord: 5.3ms | Allocations: 5027)
+
+
+Started GET "/products/12" for ::1 at 2023-03-09 15:32:54 +0300
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"12"}
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  Rendering layout layouts/application.html.haml
+  Rendering products/show.html.haml within layouts/application
+  Rendered products/show.html.haml within layouts/application (Duration: 2.6ms | Allocations: 5211)
+  Rendered layout layouts/application.html.haml (Duration: 5.2ms | Allocations: 9325)
+Completed 200 OK in 8ms (Views: 5.6ms | ActiveRecord: 0.4ms | Allocations: 10912)
+
+
+Started GET "/products" for ::1 at 2023-03-09 15:32:55 +0300
+Processing by ProductsController#index as HTML
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.4ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 11.9ms | Allocations: 7449)
+  Rendered products/index.html.haml within layouts/application (Duration: 13.5ms | Allocations: 8899)
+  Rendered layout layouts/application.html.haml (Duration: 16.0ms | Allocations: 13004)
+Completed 200 OK in 19ms (Views: 12.0ms | ActiveRecord: 4.8ms | Allocations: 14857)
+
+
+Started GET "/categories" for ::1 at 2023-03-09 15:33:04 +0300
+Processing by CategoriesController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering categories/index.html.haml within layouts/application
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/categories/index.html.haml:13
+  Rendered categories/index.html.haml within layouts/application (Duration: 2.8ms | Allocations: 2023)
+  Rendered layout layouts/application.html.haml (Duration: 11.8ms | Allocations: 6541)
+Completed 200 OK in 13ms (Views: 11.7ms | ActiveRecord: 0.5ms | Allocations: 7013)
+
+
+Started GET "/" for ::1 at 2023-03-09 15:33:06 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/users/_list.html.haml:16
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/_list.html.haml:28
+  Rendered users/_list.html.haml (Duration: 4.8ms | Allocations: 3030)
+  Rendered users/index.html.haml within layouts/application (Duration: 5.5ms | Allocations: 3434)
+  Rendered layout layouts/application.html.haml (Duration: 9.6ms | Allocations: 7639)
+Completed 200 OK in 10ms (Views: 8.3ms | ActiveRecord: 1.5ms | Allocations: 8241)
+
+
+Started GET "/users/1/edit" for ::1 at 2023-03-09 15:33:12 +0300
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:73:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/edit.html.haml within layouts/application
+  Rendered users/_form.html.haml (Duration: 9.8ms | Allocations: 13254)
+  Rendered users/edit.html.haml within layouts/application (Duration: 12.0ms | Allocations: 16842)
+  Rendered layout layouts/application.html.haml (Duration: 14.6ms | Allocations: 21065)
+Completed 200 OK in 18ms (Views: 14.9ms | ActiveRecord: 0.4ms | Allocations: 22569)
+
+
+Started PATCH "/users/1" for ::1 at 2023-03-09 15:33:40 +0300
+Processing by UsersController#update as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"first_name"=>"Anas", "last_name"=>"Abuobaid", "address"=>"Amman", "email"=>"anas@gmail.com"}, "commit"=>"Save", "id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:73:in `set_user'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:50:in `block in update'
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "first_name" = $1, "last_name" = $2, "address" = $3, "email" = $4, "updated_at" = $5 WHERE "users"."id" = $6[0m  [["first_name", "Anas"], ["last_name", "Abuobaid"], ["address", "Amman"], ["email", "anas@gmail.com"], ["updated_at", "2023-03-09 12:33:40.511125"], ["id", 1]]
+  ↳ app/controllers/users_controller.rb:50:in `block in update'
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:50:in `block in update'
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 9ms (ActiveRecord: 5.1ms | Allocations: 4001)
+
+
+Started GET "/users/1" for ::1 at 2023-03-09 15:33:40 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:73:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 3.0ms | Allocations: 7150)
+  Rendered layout layouts/application.html.haml (Duration: 5.3ms | Allocations: 11201)
+Completed 200 OK in 7ms (Views: 5.6ms | ActiveRecord: 0.4ms | Allocations: 12577)
+
+
+Started GET "/users" for ::1 at 2023-03-09 15:33:42 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/users/_list.html.haml:16
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/_list.html.haml:28
+  Rendered users/_list.html.haml (Duration: 4.0ms | Allocations: 2727)
+  Rendered users/index.html.haml within layouts/application (Duration: 4.5ms | Allocations: 3144)
+  Rendered layout layouts/application.html.haml (Duration: 8.3ms | Allocations: 7194)
+Completed 200 OK in 9ms (Views: 7.5ms | ActiveRecord: 1.2ms | Allocations: 7808)
+
+
+Started GET "/?page=3" for ::1 at 2023-03-09 15:33:49 +0300
+Processing by UsersController#index as HTML
+  Parameters: {"page"=>"3"}
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 4]]
+  ↳ app/views/users/_list.html.haml:16
+  Rendered users/_list.html.haml (Duration: 2.6ms | Allocations: 1612)
+  Rendered users/index.html.haml within layouts/application (Duration: 3.1ms | Allocations: 2004)
+  Rendered layout layouts/application.html.haml (Duration: 5.4ms | Allocations: 6054)
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.6ms | Allocations: 6653)
+
+
+Started GET "/?page=1" for ::1 at 2023-03-09 15:33:52 +0300
+Processing by UsersController#index as HTML
+  Parameters: {"page"=>"1"}
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/users/_list.html.haml:16
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/_list.html.haml:28
+  Rendered users/_list.html.haml (Duration: 4.3ms | Allocations: 3031)
+  Rendered users/index.html.haml within layouts/application (Duration: 4.7ms | Allocations: 3429)
+  Rendered layout layouts/application.html.haml (Duration: 7.8ms | Allocations: 7571)
+Completed 200 OK in 9ms (Views: 6.7ms | ActiveRecord: 1.4ms | Allocations: 8168)
+
+
+Started GET "/users/3/edit" for ::1 at 2023-03-09 15:34:00 +0300
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:73:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/edit.html.haml within layouts/application
+  Rendered users/_form.html.haml (Duration: 1.6ms | Allocations: 1891)
+  Rendered users/edit.html.haml within layouts/application (Duration: 1.8ms | Allocations: 2048)
+  Rendered layout layouts/application.html.haml (Duration: 4.1ms | Allocations: 6086)
+Completed 200 OK in 7ms (Views: 4.4ms | ActiveRecord: 0.5ms | Allocations: 7352)
+
+
+Started PATCH "/users/3" for ::1 at 2023-03-09 15:34:24 +0300
+Processing by UsersController#update as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"first_name"=>"Ahmad", "last_name"=>"Jamal", "address"=>"Amman", "email"=>"ahmad@mail.com"}, "commit"=>"Save", "id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:73:in `set_user'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:50:in `block in update'
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "first_name" = $1, "last_name" = $2, "address" = $3, "email" = $4, "updated_at" = $5 WHERE "users"."id" = $6[0m  [["first_name", "Ahmad"], ["last_name", "Jamal"], ["address", "Amman"], ["email", "ahmad@mail.com"], ["updated_at", "2023-03-09 12:34:24.775577"], ["id", 3]]
+  ↳ app/controllers/users_controller.rb:50:in `block in update'
+  [1m[36mTRANSACTION (3.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:50:in `block in update'
+Redirected to http://localhost:3000/users/3
+Completed 302 Found in 9ms (ActiveRecord: 5.1ms | Allocations: 3477)
+
+
+Started GET "/users/3" for ::1 at 2023-03-09 15:34:24 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:73:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 0.2ms | Allocations: 115)
+  Rendered layout layouts/application.html.haml (Duration: 3.3ms | Allocations: 4165)
+Completed 200 OK in 5ms (Views: 3.6ms | ActiveRecord: 0.4ms | Allocations: 5360)
+
+
+Started GET "/users" for ::1 at 2023-03-09 15:34:25 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/users/_list.html.haml:16
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/_list.html.haml:28
+  Rendered users/_list.html.haml (Duration: 4.0ms | Allocations: 2998)
+  Rendered users/index.html.haml within layouts/application (Duration: 4.5ms | Allocations: 3391)
+  Rendered layout layouts/application.html.haml (Duration: 7.9ms | Allocations: 7572)
+Completed 200 OK in 9ms (Views: 6.8ms | ActiveRecord: 1.4ms | Allocations: 8171)
+
+
+Started GET "/users/4/edit" for ::1 at 2023-03-09 15:34:28 +0300
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:73:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/edit.html.haml within layouts/application
+  Rendered users/_form.html.haml (Duration: 1.4ms | Allocations: 1832)
+  Rendered users/edit.html.haml within layouts/application (Duration: 1.7ms | Allocations: 2020)
+  Rendered layout layouts/application.html.haml (Duration: 5.1ms | Allocations: 6503)
+Completed 200 OK in 8ms (Views: 5.5ms | ActiveRecord: 0.4ms | Allocations: 7693)
+
+
+Started PATCH "/users/4" for ::1 at 2023-03-09 15:34:56 +0300
+Processing by UsersController#update as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"first_name"=>"Wajeeh", "last_name"=>"Hassan", "address"=>"Zarqa", "email"=>"wajeeh@mail.com"}, "commit"=>"Save", "id"=>"4"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:73:in `set_user'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:50:in `block in update'
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "first_name" = $1, "last_name" = $2, "address" = $3, "email" = $4, "updated_at" = $5 WHERE "users"."id" = $6[0m  [["first_name", "Wajeeh"], ["last_name", "Hassan"], ["address", "Zarqa"], ["email", "wajeeh@mail.com"], ["updated_at", "2023-03-09 12:34:56.510458"], ["id", 4]]
+  ↳ app/controllers/users_controller.rb:50:in `block in update'
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:50:in `block in update'
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 13ms (ActiveRecord: 5.4ms | Allocations: 3476)
+
+
+Started GET "/users/4" for ::1 at 2023-03-09 15:34:56 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:73:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 0.2ms | Allocations: 115)
+  Rendered layout layouts/application.html.haml (Duration: 3.1ms | Allocations: 4228)
+Completed 200 OK in 6ms (Views: 3.7ms | ActiveRecord: 0.6ms | Allocations: 5424)
+
+
+Started GET "/users" for ::1 at 2023-03-09 15:34:57 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/users/_list.html.haml:16
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/_list.html.haml:28
+  Rendered users/_list.html.haml (Duration: 4.3ms | Allocations: 3023)
+  Rendered users/index.html.haml within layouts/application (Duration: 5.0ms | Allocations: 3431)
+  Rendered layout layouts/application.html.haml (Duration: 8.3ms | Allocations: 7638)
+Completed 200 OK in 9ms (Views: 7.3ms | ActiveRecord: 1.3ms | Allocations: 8237)
+
+
+Started GET "/users/5/edit" for ::1 at 2023-03-09 15:34:59 +0300
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:73:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/edit.html.haml within layouts/application
+  Rendered users/_form.html.haml (Duration: 1.7ms | Allocations: 1847)
+  Rendered users/edit.html.haml within layouts/application (Duration: 2.1ms | Allocations: 2035)
+  Rendered layout layouts/application.html.haml (Duration: 5.6ms | Allocations: 6531)
+Completed 200 OK in 8ms (Views: 6.0ms | ActiveRecord: 0.5ms | Allocations: 7721)
+
+
+Started PATCH "/users/5" for ::1 at 2023-03-09 15:35:37 +0300
+Processing by UsersController#update as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"first_name"=>"Kareem", "last_name"=>"Mohmmad", "address"=>"Amman", "email"=>"kareem@gmail.com"}, "commit"=>"Save", "id"=>"5"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:73:in `set_user'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:50:in `block in update'
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "first_name" = $1, "last_name" = $2, "address" = $3, "email" = $4, "updated_at" = $5 WHERE "users"."id" = $6[0m  [["first_name", "Kareem"], ["last_name", "Mohmmad"], ["address", "Amman"], ["email", "kareem@gmail.com"], ["updated_at", "2023-03-09 12:35:37.523014"], ["id", 5]]
+  ↳ app/controllers/users_controller.rb:50:in `block in update'
+  [1m[36mTRANSACTION (4.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:50:in `block in update'
+Redirected to http://localhost:3000/users/5
+Completed 302 Found in 10ms (ActiveRecord: 6.1ms | Allocations: 3480)
+
+
+Started GET "/users/5" for ::1 at 2023-03-09 15:35:37 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:73:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 0.2ms | Allocations: 115)
+  Rendered layout layouts/application.html.haml (Duration: 3.1ms | Allocations: 4227)
+Completed 200 OK in 5ms (Views: 3.5ms | ActiveRecord: 0.4ms | Allocations: 5422)
+
+
+Started GET "/users" for ::1 at 2023-03-09 15:35:38 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/users/_list.html.haml:16
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/_list.html.haml:28
+  Rendered users/_list.html.haml (Duration: 3.3ms | Allocations: 2640)
+  Rendered users/index.html.haml within layouts/application (Duration: 3.8ms | Allocations: 3032)
+  Rendered layout layouts/application.html.haml (Duration: 7.9ms | Allocations: 7569)
+Completed 200 OK in 9ms (Views: 7.3ms | ActiveRecord: 1.0ms | Allocations: 8168)
+
+
+Started GET "/users/6/edit" for ::1 at 2023-03-09 15:35:41 +0300
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:73:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/edit.html.haml within layouts/application
+  Rendered users/_form.html.haml (Duration: 1.6ms | Allocations: 1832)
+  Rendered users/edit.html.haml within layouts/application (Duration: 1.9ms | Allocations: 2020)
+  Rendered layout layouts/application.html.haml (Duration: 5.8ms | Allocations: 6512)
+Completed 200 OK in 8ms (Views: 6.2ms | ActiveRecord: 0.3ms | Allocations: 7701)
+
+
+Started PATCH "/users/6" for ::1 at 2023-03-09 15:36:15 +0300
+Processing by UsersController#update as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"first_name"=>"Qusai", "last_name"=>"Sultan", "address"=>"Amman", "email"=>"qusai@gmail.com"}, "commit"=>"Save", "id"=>"6"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:73:in `set_user'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:50:in `block in update'
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "first_name" = $1, "last_name" = $2, "address" = $3, "email" = $4, "updated_at" = $5 WHERE "users"."id" = $6[0m  [["first_name", "Qusai"], ["last_name", "Sultan"], ["address", "Amman"], ["email", "qusai@gmail.com"], ["updated_at", "2023-03-09 12:36:15.499995"], ["id", 6]]
+  ↳ app/controllers/users_controller.rb:50:in `block in update'
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:50:in `block in update'
+Redirected to http://localhost:3000/users/6
+Completed 302 Found in 12ms (ActiveRecord: 6.1ms | Allocations: 3473)
+
+
+Started GET "/users/6" for ::1 at 2023-03-09 15:36:15 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:73:in `set_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 0.2ms | Allocations: 115)
+  Rendered layout layouts/application.html.haml (Duration: 2.6ms | Allocations: 4165)
+Completed 200 OK in 5ms (Views: 2.9ms | ActiveRecord: 0.4ms | Allocations: 5360)
+
+
+Started GET "/users" for ::1 at 2023-03-09 15:36:16 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/users/_list.html.haml:16
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/_list.html.haml:28
+  Rendered users/_list.html.haml (Duration: 4.1ms | Allocations: 2983)
+  Rendered users/index.html.haml within layouts/application (Duration: 4.5ms | Allocations: 3376)
+  Rendered layout layouts/application.html.haml (Duration: 7.8ms | Allocations: 7557)
+Completed 200 OK in 9ms (Views: 6.8ms | ActiveRecord: 1.4ms | Allocations: 8156)
+
+
+Started GET "/?page=2" for ::1 at 2023-03-09 15:36:33 +0300
+Processing by UsersController#index as HTML
+  Parameters: {"page"=>"2"}
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 2]]
+  ↳ app/views/users/_list.html.haml:16
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/_list.html.haml:28
+  Rendered users/_list.html.haml (Duration: 4.1ms | Allocations: 2717)
+  Rendered users/index.html.haml within layouts/application (Duration: 4.6ms | Allocations: 3109)
+  Rendered layout layouts/application.html.haml (Duration: 7.0ms | Allocations: 7159)
+Completed 200 OK in 8ms (Views: 6.2ms | ActiveRecord: 1.2ms | Allocations: 7757)
+
+
+Started GET "/?page=3" for ::1 at 2023-03-09 15:36:34 +0300
+Processing by UsersController#index as HTML
+  Parameters: {"page"=>"3"}
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 4]]
+  ↳ app/views/users/_list.html.haml:16
+  Rendered users/_list.html.haml (Duration: 3.3ms | Allocations: 1927)
+  Rendered users/index.html.haml within layouts/application (Duration: 3.9ms | Allocations: 2340)
+  Rendered layout layouts/application.html.haml (Duration: 7.3ms | Allocations: 6524)
+Completed 200 OK in 8ms (Views: 6.9ms | ActiveRecord: 0.8ms | Allocations: 7121)
+
+
+Started GET "/?page=1" for ::1 at 2023-03-09 15:36:35 +0300
+Processing by UsersController#index as HTML
+  Parameters: {"page"=>"1"}
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/users/_list.html.haml:16
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/_list.html.haml:28
+  Rendered users/_list.html.haml (Duration: 3.9ms | Allocations: 2990)
+  Rendered users/index.html.haml within layouts/application (Duration: 4.5ms | Allocations: 3401)
+  Rendered layout layouts/application.html.haml (Duration: 7.6ms | Allocations: 7559)
+Completed 200 OK in 8ms (Views: 6.6ms | ActiveRecord: 1.3ms | Allocations: 8156)
+
+
+Started GET "/products" for ::1 at 2023-03-09 15:36:36 +0300
+Processing by ProductsController#index as HTML
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.9ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 11.8ms | Allocations: 7418)
+  Rendered products/index.html.haml within layouts/application (Duration: 12.8ms | Allocations: 8844)
+  Rendered layout layouts/application.html.haml (Duration: 17.0ms | Allocations: 12895)
+Completed 200 OK in 20ms (Views: 13.3ms | ActiveRecord: 4.5ms | Allocations: 14732)
+
+
+Started GET "/products?page=2" for ::1 at 2023-03-09 15:36:38 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 5]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  Rendered products/_list.html.haml (Duration: 4.9ms | Allocations: 3219)
+  Rendered products/index.html.haml within layouts/application (Duration: 6.0ms | Allocations: 4613)
+  Rendered layout layouts/application.html.haml (Duration: 8.8ms | Allocations: 8726)
+Completed 200 OK in 12ms (Views: 7.2ms | ActiveRecord: 2.4ms | Allocations: 10484)
+
+
+Started GET "/products?page=1" for ::1 at 2023-03-09 15:36:39 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"page"=>"1"}
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 10.6ms | Allocations: 7369)
+  Rendered products/index.html.haml within layouts/application (Duration: 11.6ms | Allocations: 8757)
+  Rendered layout layouts/application.html.haml (Duration: 14.1ms | Allocations: 12870)
+Completed 200 OK in 17ms (Views: 10.7ms | ActiveRecord: 4.2ms | Allocations: 14623)
+
+
+Started GET "/products/9/edit" for ::1 at 2023-03-09 15:36:42 +0300
+Processing by ProductsController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  Rendering layout layouts/application.html.haml
+  Rendering products/edit.html.haml within layouts/application
+  [1m[36mCategory Load (1.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/products/_form.html.haml:8
+  Rendered products/_form.html.haml (Duration: 10.8ms | Allocations: 10982)
+  Rendered products/edit.html.haml within layouts/application (Duration: 13.1ms | Allocations: 13880)
+  Rendered layout layouts/application.html.haml (Duration: 16.9ms | Allocations: 18049)
+Completed 200 OK in 20ms (Views: 16.4ms | ActiveRecord: 1.5ms | Allocations: 19364)
+
+
+Started PATCH "/products/9" for ::1 at 2023-03-09 15:36:50 +0300
+Processing by ProductsController#update as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "product"=>{"name"=>"Watch s9", "desc"=>"Samsung", "price"=>"270.0", "category_id"=>"40"}, "commit"=>"Update Product", "id"=>"9"}
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+  [1m[36mProduct Update (0.8ms)[0m  [1m[33mUPDATE "products" SET "name" = $1, "desc" = $2, "updated_at" = $3 WHERE "products"."id" = $4[0m  [["name", "Watch s9"], ["desc", "Samsung"], ["updated_at", "2023-03-09 12:36:50.125228"], ["id", 9]]
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+  [1m[36mTRANSACTION (3.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+Redirected to http://localhost:3000/products/9
+Completed 302 Found in 12ms (ActiveRecord: 6.0ms | Allocations: 4728)
+
+
+Started GET "/products/9" for ::1 at 2023-03-09 15:36:50 +0300
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  Rendering layout layouts/application.html.haml
+  Rendering products/show.html.haml within layouts/application
+  Rendered products/show.html.haml within layouts/application (Duration: 0.2ms | Allocations: 103)
+  Rendered layout layouts/application.html.haml (Duration: 2.8ms | Allocations: 4153)
+Completed 200 OK in 5ms (Views: 3.1ms | ActiveRecord: 0.4ms | Allocations: 5349)
+
+
+Started GET "/products" for ::1 at 2023-03-09 15:36:51 +0300
+Processing by ProductsController#index as HTML
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 8.0ms | Allocations: 6892)
+  Rendered products/index.html.haml within layouts/application (Duration: 9.0ms | Allocations: 8280)
+  Rendered layout layouts/application.html.haml (Duration: 11.7ms | Allocations: 12330)
+Completed 200 OK in 15ms (Views: 8.9ms | ActiveRecord: 3.8ms | Allocations: 14166)
+
+
+Started GET "/products/8/edit" for ::1 at 2023-03-09 15:36:56 +0300
+Processing by ProductsController#edit as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  Rendering layout layouts/application.html.haml
+  Rendering products/edit.html.haml within layouts/application
+  [1m[36mCategory Load (1.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/products/_form.html.haml:8
+  Rendered products/_form.html.haml (Duration: 10.3ms | Allocations: 10926)
+  Rendered products/edit.html.haml within layouts/application (Duration: 10.7ms | Allocations: 11101)
+  Rendered layout layouts/application.html.haml (Duration: 14.3ms | Allocations: 15247)
+Completed 200 OK in 17ms (Views: 13.7ms | ActiveRecord: 1.7ms | Allocations: 16437)
+
+
+Started PATCH "/products/8" for ::1 at 2023-03-09 15:37:03 +0300
+Processing by ProductsController#update as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "product"=>{"name"=>"Laptob", "desc"=>"Dell core  i5", "price"=>"800.0", "category_id"=>"1"}, "commit"=>"Update Product", "id"=>"8"}
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+  [1m[36mProduct Update (0.7ms)[0m  [1m[33mUPDATE "products" SET "name" = $1, "desc" = $2, "updated_at" = $3 WHERE "products"."id" = $4[0m  [["name", "Laptob"], ["desc", "Dell core  i5"], ["updated_at", "2023-03-09 12:37:03.786186"], ["id", 8]]
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+  [1m[36mTRANSACTION (3.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+Redirected to http://localhost:3000/products/8
+Completed 302 Found in 11ms (ActiveRecord: 5.9ms | Allocations: 4708)
+
+
+Started GET "/products/8" for ::1 at 2023-03-09 15:37:03 +0300
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  Rendering layout layouts/application.html.haml
+  Rendering products/show.html.haml within layouts/application
+  Rendered products/show.html.haml within layouts/application (Duration: 0.2ms | Allocations: 96)
+  Rendered layout layouts/application.html.haml (Duration: 2.8ms | Allocations: 4146)
+Completed 200 OK in 5ms (Views: 3.1ms | ActiveRecord: 0.4ms | Allocations: 5342)
+
+
+Started GET "/products" for ::1 at 2023-03-09 15:37:05 +0300
+Processing by ProductsController#index as HTML
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 9.5ms | Allocations: 7029)
+  Rendered products/index.html.haml within layouts/application (Duration: 10.3ms | Allocations: 8417)
+  Rendered layout layouts/application.html.haml (Duration: 13.2ms | Allocations: 12490)
+Completed 200 OK in 17ms (Views: 10.6ms | ActiveRecord: 4.0ms | Allocations: 14561)
+
+
+Started GET "/products?page=2" for ::1 at 2023-03-09 15:37:07 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 5]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  Rendered products/_list.html.haml (Duration: 5.7ms | Allocations: 3357)
+  Rendered products/index.html.haml within layouts/application (Duration: 6.8ms | Allocations: 4751)
+  Rendered layout layouts/application.html.haml (Duration: 10.2ms | Allocations: 8887)
+Completed 200 OK in 16ms (Views: 8.7ms | ActiveRecord: 2.5ms | Allocations: 10980)
+
+
+Started GET "/products/7/edit" for ::1 at 2023-03-09 15:37:10 +0300
+Processing by ProductsController#edit as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  Rendering layout layouts/application.html.haml
+  Rendering products/edit.html.haml within layouts/application
+  [1m[36mCategory Load (1.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/products/_form.html.haml:8
+  Rendered products/_form.html.haml (Duration: 12.6ms | Allocations: 10947)
+  Rendered products/edit.html.haml within layouts/application (Duration: 12.9ms | Allocations: 11123)
+  Rendered layout layouts/application.html.haml (Duration: 16.5ms | Allocations: 15333)
+Completed 200 OK in 19ms (Views: 15.8ms | ActiveRecord: 1.4ms | Allocations: 16524)
+
+
+Started PATCH "/products/7" for ::1 at 2023-03-09 15:37:14 +0300
+Processing by ProductsController#update as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "product"=>{"name"=>"Phone", "desc"=>"amazing phone", "price"=>"700.0", "category_id"=>"6"}, "commit"=>"Update Product", "id"=>"7"}
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+  [1m[36mProduct Update (0.7ms)[0m  [1m[33mUPDATE "products" SET "name" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["name", "Phone"], ["updated_at", "2023-03-09 12:37:14.993984"], ["id", 7]]
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+  [1m[36mTRANSACTION (3.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/products_controller.rb:56:in `block in update'
+Redirected to http://localhost:3000/products/7
+Completed 302 Found in 11ms (ActiveRecord: 5.9ms | Allocations: 4692)
+
+
+Started GET "/products/7" for ::1 at 2023-03-09 15:37:15 +0300
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:79:in `set_product'
+  Rendering layout layouts/application.html.haml
+  Rendering products/show.html.haml within layouts/application
+  Rendered products/show.html.haml within layouts/application (Duration: 0.2ms | Allocations: 96)
+  Rendered layout layouts/application.html.haml (Duration: 2.9ms | Allocations: 4208)
+Completed 200 OK in 5ms (Views: 3.3ms | ActiveRecord: 0.4ms | Allocations: 5404)
+
+
+Started GET "/products" for ::1 at 2023-03-09 15:37:16 +0300
+Processing by ProductsController#index as HTML
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 11.3ms | Allocations: 7379)
+  Rendered products/index.html.haml within layouts/application (Duration: 12.3ms | Allocations: 8767)
+  Rendered layout layouts/application.html.haml (Duration: 14.8ms | Allocations: 12865)
+Completed 200 OK in 18ms (Views: 11.0ms | ActiveRecord: 4.5ms | Allocations: 14621)
+
+
+Started GET "/products?page=2" for ::1 at 2023-03-09 15:37:19 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 5]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  Rendered products/_list.html.haml (Duration: 5.6ms | Allocations: 3346)
+  Rendered products/index.html.haml within layouts/application (Duration: 6.6ms | Allocations: 4734)
+  Rendered layout layouts/application.html.haml (Duration: 10.2ms | Allocations: 8791)
+Completed 200 OK in 14ms (Views: 8.7ms | ActiveRecord: 2.4ms | Allocations: 10899)
+
+
+Started GET "/products?page=1" for ::1 at 2023-03-09 15:37:21 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"page"=>"1"}
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 10.9ms | Allocations: 7366)
+  Rendered products/index.html.haml within layouts/application (Duration: 11.7ms | Allocations: 8754)
+  Rendered layout layouts/application.html.haml (Duration: 14.3ms | Allocations: 12804)
+Completed 200 OK in 17ms (Views: 10.9ms | ActiveRecord: 4.3ms | Allocations: 14557)
+
+
+Started GET "/products?page=1" for ::1 at 2023-03-09 15:37:55 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"page"=>"1"}
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 13.6ms | Allocations: 16542)
+  Rendered products/index.html.haml within layouts/application (Duration: 20.4ms | Allocations: 28343)
+  Rendered layout layouts/application.html.haml (Duration: 27.3ms | Allocations: 40230)
+Completed 200 OK in 32ms (Views: 24.6ms | ActiveRecord: 4.0ms | Allocations: 43042)
+
+
+Started GET "/products?filterrific%5Bsearch_query%5D=&filterrific%5Bsorted_by%5D=created_at_desc&filterrific%5Bwith_category_id%5D=&filterrific%5Bwith_price_lte%5D=200&filterrific%5Bwith_price_gte%5D=444&commit=Search" for ::1 at 2023-03-09 15:38:18 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"filterrific"=>{"search_query"=>"", "sorted_by"=>"created_at_desc", "with_category_id"=>"", "with_price_lte"=>"200", "with_price_gte"=>"444"}, "commit"=>"Search"}
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE (price >= 444) AND (price <= 200) ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  Rendered products/_list.html.haml (Duration: 1.7ms | Allocations: 902)
+  Rendered products/index.html.haml within layouts/application (Duration: 2.9ms | Allocations: 2327)
+  Rendered layout layouts/application.html.haml (Duration: 5.7ms | Allocations: 6441)
+Completed 200 OK in 12ms (Views: 5.2ms | ActiveRecord: 1.3ms | Allocations: 8776)
+
+
+Started GET "/products?filterrific%5Bsearch_query%5D=&filterrific%5Bsorted_by%5D=created_at_desc&filterrific%5Bwith_category_id%5D=&filterrific%5Bwith_price_lte%5D=200&filterrific%5Bwith_price_gte%5D=445&commit=Search" for ::1 at 2023-03-09 15:38:24 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"filterrific"=>{"search_query"=>"", "sorted_by"=>"created_at_desc", "with_category_id"=>"", "with_price_lte"=>"200", "with_price_gte"=>"445"}, "commit"=>"Search"}
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE (price >= 445) AND (price <= 200) ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  Rendered products/_list.html.haml (Duration: 1.3ms | Allocations: 874)
+  Rendered products/index.html.haml within layouts/application (Duration: 2.3ms | Allocations: 2280)
+  Rendered layout layouts/application.html.haml (Duration: 5.1ms | Allocations: 6385)
+Completed 200 OK in 9ms (Views: 4.9ms | ActiveRecord: 1.1ms | Allocations: 8611)
+
+
+Started GET "/products?filterrific%5Bsearch_query%5D=&filterrific%5Bsorted_by%5D=&filterrific%5Bwith_category_id%5D=&filterrific%5Bwith_price_lte%5D=200&filterrific%5Bwith_price_gte%5D=445&commit=Search" for ::1 at 2023-03-09 15:38:28 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"filterrific"=>{"search_query"=>"", "sorted_by"=>"", "with_category_id"=>"", "with_price_lte"=>"200", "with_price_gte"=>"445"}, "commit"=>"Search"}
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE (price >= 445) AND (price <= 200) LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  Rendered products/_list.html.haml (Duration: 1.4ms | Allocations: 868)
+  Rendered products/index.html.haml within layouts/application (Duration: 2.4ms | Allocations: 2271)
+  Rendered layout layouts/application.html.haml (Duration: 5.1ms | Allocations: 6384)
+Completed 200 OK in 8ms (Views: 4.8ms | ActiveRecord: 1.0ms | Allocations: 8411)
+
+
+Started GET "/products?filterrific%5Bsearch_query%5D=&filterrific%5Bsorted_by%5D=&filterrific%5Bwith_category_id%5D=&filterrific%5Bwith_price_lte%5D=&filterrific%5Bwith_price_gte%5D=445&commit=Search" for ::1 at 2023-03-09 15:38:34 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"filterrific"=>{"search_query"=>"", "sorted_by"=>"", "with_category_id"=>"", "with_price_lte"=>"", "with_price_gte"=>"445"}, "commit"=>"Search"}
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE (price >= 445) LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  Rendered products/_list.html.haml (Duration: 6.5ms | Allocations: 4699)
+  Rendered products/index.html.haml within layouts/application (Duration: 7.5ms | Allocations: 6093)
+  Rendered layout layouts/application.html.haml (Duration: 10.3ms | Allocations: 10205)
+Completed 200 OK in 13ms (Views: 8.5ms | ActiveRecord: 2.5ms | Allocations: 12043)
+
+
+Started GET "/products?filterrific%5Bsearch_query%5D=&filterrific%5Bsorted_by%5D=&filterrific%5Bwith_category_id%5D=&filterrific%5Bwith_price_lte%5D=&filterrific%5Bwith_price_gte%5D=445&commit=Search" for ::1 at 2023-03-09 15:38:51 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"filterrific"=>{"search_query"=>"", "sorted_by"=>"", "with_category_id"=>"", "with_price_lte"=>"", "with_price_gte"=>"445"}, "commit"=>"Search"}
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE (price >= 445) LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  Rendered products/_list.html.haml (Duration: 9.9ms | Allocations: 14290)
+  Rendered products/index.html.haml within layouts/application (Duration: 15.4ms | Allocations: 26096)
+  Rendered layout layouts/application.html.haml (Duration: 21.4ms | Allocations: 38033)
+Completed 200 OK in 25ms (Views: 19.7ms | ActiveRecord: 2.7ms | Allocations: 40948)
+
+
+Started GET "/products?filterrific%5Bsearch_query%5D=&filterrific%5Bsorted_by%5D=&filterrific%5Bwith_category_id%5D=&filterrific%5Bwith_price_gte%5D=200&filterrific%5Bwith_price_lte%5D=455&commit=Search" for ::1 at 2023-03-09 15:39:02 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"filterrific"=>{"search_query"=>"", "sorted_by"=>"", "with_category_id"=>"", "with_price_gte"=>"200", "with_price_lte"=>"455"}, "commit"=>"Search"}
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE (price >= 200) AND (price <= 455) LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  Rendered products/_list.html.haml (Duration: 6.0ms | Allocations: 3947)
+  Rendered products/index.html.haml within layouts/application (Duration: 7.0ms | Allocations: 5350)
+  Rendered layout layouts/application.html.haml (Duration: 9.4ms | Allocations: 9400)
+Completed 200 OK in 13ms (Views: 7.7ms | ActiveRecord: 2.6ms | Allocations: 11472)
+
+
+Started GET "/products?filterrific%5Bsearch_query%5D=&filterrific%5Bsorted_by%5D=name_asc&filterrific%5Bwith_category_id%5D=&filterrific%5Bwith_price_gte%5D=200&filterrific%5Bwith_price_lte%5D=455&commit=Search" for ::1 at 2023-03-09 15:39:20 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"filterrific"=>{"search_query"=>"", "sorted_by"=>"name_asc", "with_category_id"=>"", "with_price_gte"=>"200", "with_price_lte"=>"455"}, "commit"=>"Search"}
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE (price >= 200) AND (price <= 455) ORDER BY products.name asc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  Rendered products/_list.html.haml (Duration: 5.8ms | Allocations: 3954)
+  Rendered products/index.html.haml within layouts/application (Duration: 6.7ms | Allocations: 5360)
+  Rendered layout layouts/application.html.haml (Duration: 9.7ms | Allocations: 9410)
+Completed 200 OK in 13ms (Views: 7.7ms | ActiveRecord: 2.7ms | Allocations: 11642)
+
+
+Started GET "/products?filterrific%5Bsearch_query%5D=&filterrific%5Bsorted_by%5D=price_asc&filterrific%5Bwith_category_id%5D=&filterrific%5Bwith_price_gte%5D=200&filterrific%5Bwith_price_lte%5D=455&commit=Search" for ::1 at 2023-03-09 15:39:24 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"filterrific"=>{"search_query"=>"", "sorted_by"=>"price_asc", "with_category_id"=>"", "with_price_gte"=>"200", "with_price_lte"=>"455"}, "commit"=>"Search"}
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE (price >= 200) AND (price <= 455) ORDER BY products.price asc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  Rendered products/_list.html.haml (Duration: 6.4ms | Allocations: 3952)
+  Rendered products/index.html.haml within layouts/application (Duration: 7.3ms | Allocations: 5358)
+  Rendered layout layouts/application.html.haml (Duration: 9.9ms | Allocations: 9408)
+Completed 200 OK in 13ms (Views: 7.7ms | ActiveRecord: 2.9ms | Allocations: 11629)
+
+
+Started GET "/products?filterrific%5Bsearch_query%5D=&filterrific%5Bsorted_by%5D=created_at_desc&filterrific%5Bwith_category_id%5D=&filterrific%5Bwith_price_gte%5D=200&filterrific%5Bwith_price_lte%5D=455&commit=Search" for ::1 at 2023-03-09 15:39:29 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"filterrific"=>{"search_query"=>"", "sorted_by"=>"created_at_desc", "with_category_id"=>"", "with_price_gte"=>"200", "with_price_lte"=>"455"}, "commit"=>"Search"}
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE (price >= 200) AND (price <= 455) ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  Rendered products/_list.html.haml (Duration: 5.4ms | Allocations: 3952)
+  Rendered products/index.html.haml within layouts/application (Duration: 6.4ms | Allocations: 5376)
+  Rendered layout layouts/application.html.haml (Duration: 9.7ms | Allocations: 9489)
+Completed 200 OK in 13ms (Views: 7.9ms | ActiveRecord: 2.8ms | Allocations: 11717)
+
+
+Started GET "/products?filterrific%5Bsearch_query%5D=&filterrific%5Bsorted_by%5D=created_at_asc&filterrific%5Bwith_category_id%5D=&filterrific%5Bwith_price_gte%5D=200&filterrific%5Bwith_price_lte%5D=455&commit=Search" for ::1 at 2023-03-09 15:39:33 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"filterrific"=>{"search_query"=>"", "sorted_by"=>"created_at_asc", "with_category_id"=>"", "with_price_gte"=>"200", "with_price_lte"=>"455"}, "commit"=>"Search"}
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE (price >= 200) AND (price <= 455) ORDER BY products.created_at asc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  Rendered products/_list.html.haml (Duration: 5.2ms | Allocations: 3952)
+  Rendered products/index.html.haml within layouts/application (Duration: 6.5ms | Allocations: 5358)
+  Rendered layout layouts/application.html.haml (Duration: 9.2ms | Allocations: 9464)
+Completed 200 OK in 12ms (Views: 7.2ms | ActiveRecord: 2.6ms | Allocations: 11685)
+
+
+Started GET "/products?filterrific%5Bsearch_query%5D=&filterrific%5Bsorted_by%5D=&filterrific%5Bwith_category_id%5D=&filterrific%5Bwith_price_gte%5D=200&filterrific%5Bwith_price_lte%5D=455&commit=Search" for ::1 at 2023-03-09 15:39:36 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"filterrific"=>{"search_query"=>"", "sorted_by"=>"", "with_category_id"=>"", "with_price_gte"=>"200", "with_price_lte"=>"455"}, "commit"=>"Search"}
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE (price >= 200) AND (price <= 455) LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  Rendered products/_list.html.haml (Duration: 5.3ms | Allocations: 3946)
+  Rendered products/index.html.haml within layouts/application (Duration: 6.3ms | Allocations: 5349)
+  Rendered layout layouts/application.html.haml (Duration: 9.9ms | Allocations: 9461)
+Completed 200 OK in 13ms (Views: 8.3ms | ActiveRecord: 2.3ms | Allocations: 11488)
+
+
+Started GET "/products?filterrific%5Bsearch_query%5D=&filterrific%5Bsorted_by%5D=&filterrific%5Bwith_category_id%5D=&filterrific%5Bwith_price_gte%5D=&filterrific%5Bwith_price_lte%5D=&commit=Search" for ::1 at 2023-03-09 15:40:29 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"filterrific"=>{"search_query"=>"", "sorted_by"=>"", "with_category_id"=>"", "with_price_gte"=>"", "with_price_lte"=>""}, "commit"=>"Search"}
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 10.0ms | Allocations: 7132)
+  Rendered products/index.html.haml within layouts/application (Duration: 11.1ms | Allocations: 8517)
+  Rendered layout layouts/application.html.haml (Duration: 13.5ms | Allocations: 12629)
+Completed 200 OK in 17ms (Views: 10.8ms | ActiveRecord: 3.6ms | Allocations: 14274)
+
+
+Started GET "/products?commit=Search&filterrific%5Bsearch_query%5D=&filterrific%5Bsorted_by%5D=&filterrific%5Bwith_category_id%5D=&filterrific%5Bwith_price_gte%5D=&filterrific%5Bwith_price_lte%5D=&page=2" for ::1 at 2023-03-09 15:40:31 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"commit"=>"Search", "filterrific"=>{"search_query"=>"", "sorted_by"=>"", "with_category_id"=>"", "with_price_gte"=>"", "with_price_lte"=>""}, "page"=>"2"}
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products" LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 5]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  Rendered products/_list.html.haml (Duration: 4.7ms | Allocations: 3799)
+  Rendered products/index.html.haml within layouts/application (Duration: 5.7ms | Allocations: 5184)
+  Rendered layout layouts/application.html.haml (Duration: 9.0ms | Allocations: 9313)
+Completed 200 OK in 12ms (Views: 7.6ms | ActiveRecord: 2.3ms | Allocations: 10947)
+
+
+Started GET "/products?commit=Search&filterrific%5Bsearch_query%5D=&filterrific%5Bsorted_by%5D=&filterrific%5Bwith_category_id%5D=&filterrific%5Bwith_price_gte%5D=&filterrific%5Bwith_price_lte%5D=&page=1" for ::1 at 2023-03-09 15:40:33 +0300
+Processing by ProductsController#index as HTML
+  Parameters: {"commit"=>"Search", "filterrific"=>{"search_query"=>"", "sorted_by"=>"", "with_category_id"=>"", "with_price_gte"=>"", "with_price_lte"=>""}, "page"=>"1"}
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products" LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 10.2ms | Allocations: 7535)
+  Rendered products/index.html.haml within layouts/application (Duration: 11.3ms | Allocations: 8920)
+  Rendered layout layouts/application.html.haml (Duration: 13.9ms | Allocations: 13018)
+Completed 200 OK in 16ms (Views: 10.4ms | ActiveRecord: 4.2ms | Allocations: 14652)
+
+
+Started GET "/" for ::1 at 2023-03-09 15:41:04 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/users/_list.html.haml:16
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/_list.html.haml:28
+  Rendered users/_list.html.haml (Duration: 9.1ms | Allocations: 12484)
+  Rendered users/index.html.haml within layouts/application (Duration: 13.5ms | Allocations: 18094)
+  Rendered layout layouts/application.html.haml (Duration: 16.6ms | Allocations: 22333)
+Completed 200 OK in 19ms (Views: 16.5ms | ActiveRecord: 1.2ms | Allocations: 23572)
+
+
+Started GET "/?filterrific%5Bsearch_query%5D=W&commit=Search" for ::1 at 2023-03-09 15:41:09 +0300
+Processing by UsersController#index as HTML
+  Parameters: {"filterrific"=>{"search_query"=>"W"}, "commit"=>"Search"}
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (first_name ILIKE '%W%' OR last_name ILIKE '%W%' OR email ILIKE '%W%' OR address ILIKE '%W%') LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/users/_list.html.haml:16
+  Rendered users/_list.html.haml (Duration: 2.5ms | Allocations: 1047)
+  Rendered users/index.html.haml within layouts/application (Duration: 3.0ms | Allocations: 1446)
+  Rendered layout layouts/application.html.haml (Duration: 5.4ms | Allocations: 5496)
+Completed 200 OK in 8ms (Views: 4.2ms | ActiveRecord: 1.6ms | Allocations: 7015)
+
+
+Started GET "/?filterrific%5Bsearch_query%5D=K&commit=Search" for ::1 at 2023-03-09 15:41:13 +0300
+Processing by UsersController#index as HTML
+  Parameters: {"filterrific"=>{"search_query"=>"K"}, "commit"=>"Search"}
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (first_name ILIKE '%K%' OR last_name ILIKE '%K%' OR email ILIKE '%K%' OR address ILIKE '%K%') LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/users/_list.html.haml:16
+  Rendered users/_list.html.haml (Duration: 1.5ms | Allocations: 1034)
+  Rendered users/index.html.haml within layouts/application (Duration: 2.1ms | Allocations: 1433)
+  Rendered layout layouts/application.html.haml (Duration: 8.4ms | Allocations: 5536)
+Completed 200 OK in 10ms (Views: 8.2ms | ActiveRecord: 0.6ms | Allocations: 6831)
+
+
+Started GET "/?filterrific%5Bsearch_query%5D=A&commit=Search" for ::1 at 2023-03-09 15:41:18 +0300
+Processing by UsersController#index as HTML
+  Parameters: {"filterrific"=>{"search_query"=>"A"}, "commit"=>"Search"}
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (first_name ILIKE '%A%' OR last_name ILIKE '%A%' OR email ILIKE '%A%' OR address ILIKE '%A%') LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/users/_list.html.haml:16
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (first_name ILIKE '%A%' OR last_name ILIKE '%A%' OR email ILIKE '%A%' OR address ILIKE '%A%')[0m
+  ↳ app/views/users/_list.html.haml:28
+  Rendered users/_list.html.haml (Duration: 3.4ms | Allocations: 2576)
+  Rendered users/index.html.haml within layouts/application (Duration: 4.0ms | Allocations: 2981)
+  Rendered layout layouts/application.html.haml (Duration: 7.0ms | Allocations: 7094)
+Completed 200 OK in 9ms (Views: 6.1ms | ActiveRecord: 1.2ms | Allocations: 8393)
+
+
+Started GET "/?commit=Search&filterrific%5Bsearch_query%5D=A&page=2" for ::1 at 2023-03-09 15:41:24 +0300
+Processing by UsersController#index as HTML
+  Parameters: {"commit"=>"Search", "filterrific"=>{"search_query"=>"A"}, "page"=>"2"}
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (first_name ILIKE '%A%' OR last_name ILIKE '%A%' OR email ILIKE '%A%' OR address ILIKE '%A%') LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 2]]
+  ↳ app/views/users/_list.html.haml:16
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (first_name ILIKE '%A%' OR last_name ILIKE '%A%' OR email ILIKE '%A%' OR address ILIKE '%A%')[0m
+  ↳ app/views/users/_list.html.haml:28
+  Rendered users/_list.html.haml (Duration: 3.7ms | Allocations: 3079)
+  Rendered users/index.html.haml within layouts/application (Duration: 4.3ms | Allocations: 3487)
+  Rendered layout layouts/application.html.haml (Duration: 7.7ms | Allocations: 7687)
+Completed 200 OK in 10ms (Views: 6.7ms | ActiveRecord: 1.4ms | Allocations: 8982)
+
+
+Started GET "/?commit=Search&filterrific%5Bsearch_query%5D=A&page=3" for ::1 at 2023-03-09 15:41:25 +0300
+Processing by UsersController#index as HTML
+  Parameters: {"commit"=>"Search", "filterrific"=>{"search_query"=>"A"}, "page"=>"3"}
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (first_name ILIKE '%A%' OR last_name ILIKE '%A%' OR email ILIKE '%A%' OR address ILIKE '%A%') LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 4]]
+  ↳ app/views/users/_list.html.haml:16
+  Rendered users/_list.html.haml (Duration: 2.0ms | Allocations: 1537)
+  Rendered users/index.html.haml within layouts/application (Duration: 2.5ms | Allocations: 1936)
+  Rendered layout layouts/application.html.haml (Duration: 5.2ms | Allocations: 5987)
+Completed 200 OK in 8ms (Views: 4.8ms | ActiveRecord: 0.6ms | Allocations: 7282)
+
+
+Started GET "/?commit=Search&filterrific%5Bsearch_query%5D=A&page=2" for ::1 at 2023-03-09 15:41:27 +0300
+Processing by UsersController#index as HTML
+  Parameters: {"commit"=>"Search", "filterrific"=>{"search_query"=>"A"}, "page"=>"2"}
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (first_name ILIKE '%A%' OR last_name ILIKE '%A%' OR email ILIKE '%A%' OR address ILIKE '%A%') LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 2]]
+  ↳ app/views/users/_list.html.haml:16
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (first_name ILIKE '%A%' OR last_name ILIKE '%A%' OR email ILIKE '%A%' OR address ILIKE '%A%')[0m
+  ↳ app/views/users/_list.html.haml:28
+  Rendered users/_list.html.haml (Duration: 4.0ms | Allocations: 2686)
+  Rendered users/index.html.haml within layouts/application (Duration: 4.6ms | Allocations: 3085)
+  Rendered layout layouts/application.html.haml (Duration: 8.9ms | Allocations: 7678)
+Completed 200 OK in 12ms (Views: 8.1ms | ActiveRecord: 1.4ms | Allocations: 8973)
+
+
+Started GET "/?commit=Search&filterrific%5Bsearch_query%5D=A&page=3" for ::1 at 2023-03-09 15:41:28 +0300
+Processing by UsersController#index as HTML
+  Parameters: {"commit"=>"Search", "filterrific"=>{"search_query"=>"A"}, "page"=>"3"}
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (first_name ILIKE '%A%' OR last_name ILIKE '%A%' OR email ILIKE '%A%' OR address ILIKE '%A%') LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 4]]
+  ↳ app/views/users/_list.html.haml:16
+  Rendered users/_list.html.haml (Duration: 2.4ms | Allocations: 1537)
+  Rendered users/index.html.haml within layouts/application (Duration: 3.0ms | Allocations: 1936)
+  Rendered layout layouts/application.html.haml (Duration: 5.7ms | Allocations: 6048)
+Completed 200 OK in 8ms (Views: 5.3ms | ActiveRecord: 0.7ms | Allocations: 7344)
+
+
+Started GET "/?commit=Search&filterrific%5Bsearch_query%5D=A&page=1" for ::1 at 2023-03-09 15:41:29 +0300
+Processing by UsersController#index as HTML
+  Parameters: {"commit"=>"Search", "filterrific"=>{"search_query"=>"A"}, "page"=>"1"}
+  Rendering layout layouts/application.html.haml
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (first_name ILIKE '%A%' OR last_name ILIKE '%A%' OR email ILIKE '%A%' OR address ILIKE '%A%') LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/users/_list.html.haml:16
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (first_name ILIKE '%A%' OR last_name ILIKE '%A%' OR email ILIKE '%A%' OR address ILIKE '%A%')[0m
+  ↳ app/views/users/_list.html.haml:28
+  Rendered users/_list.html.haml (Duration: 4.4ms | Allocations: 2953)
+  Rendered users/index.html.haml within layouts/application (Duration: 5.0ms | Allocations: 3361)
+  Rendered layout layouts/application.html.haml (Duration: 8.0ms | Allocations: 7505)
+Completed 200 OK in 10ms (Views: 6.9ms | ActiveRecord: 1.4ms | Allocations: 8800)
+
+
+Started GET "/products" for ::1 at 2023-03-09 15:41:33 +0300
+Processing by ProductsController#index as HTML
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/products_controller.rb:11:in `map'
+  Rendering layout layouts/application.html.haml
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY products.created_at desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/products/_list.html.haml:16
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/_list.html.haml:25
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "products"[0m
+  ↳ app/views/products/_list.html.haml:32
+  Rendered products/_list.html.haml (Duration: 9.7ms | Allocations: 7081)
+  Rendered products/index.html.haml within layouts/application (Duration: 10.6ms | Allocations: 8510)
+  Rendered layout layouts/application.html.haml (Duration: 13.2ms | Allocations: 12599)
+Completed 200 OK in 17ms (Views: 10.1ms | ActiveRecord: 4.5ms | Allocations: 14680)
+
+

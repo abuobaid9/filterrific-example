@@ -1,9 +1,7 @@
-import Rails from "@rails/ujs"
-import "channels"
-
-import jquery from 'jquery';
-window.$ = window.jquery = jquery;
-
+//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require_tree .
 
 
-Rails.start()
+

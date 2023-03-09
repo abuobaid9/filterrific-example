@@ -35,4 +35,4 @@ gem "will_paginate", "~> 3.3"
 gem 'will_paginate-bootstrap'
 gem 'simple_form'
 gem "haml-rails", "~> 2.0"
-gem "faker", "~> 2.15"
+gem 'jquery-rails'

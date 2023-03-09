@@ -8,6 +8,10 @@
             %th desc
             %th price
             %th category
+            %th Show 
+            %th Edit 
+            %th Delete 
+
         %tbody
           - products.each do |f|
             %tr
@@ -19,6 +23,9 @@
                 $ #{f.price}
               %td
                 = f.category.name
+              %td= link_to 'Show',f
+              %td= link_to 'Edit', edit_product_path(f)
+              %td= link_to 'Destroy', f, method: :delete, data: { confirm: 'Are you sure?' }
 .row
   .small-12.columns
     = link_to 'New Product', new_product_path, class: 'button success'

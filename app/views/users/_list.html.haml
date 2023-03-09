@@ -8,7 +8,10 @@
             %th Address
             %th Email
             %th Created at
-            %th{:colspan => "2"} Actions
+            %th Show 
+            %th Edit 
+            %th Delete 
+
         %tbody
           - users.each do |user|
             %tr
@@ -18,6 +21,7 @@
               %td= user.decorated_created_at
               %td= link_to 'Show', user
               %td= link_to 'Edit', edit_user_path(user)
+              %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
 .row
   .small-12.columns
     = link_to 'New User', new_user_path, class: 'button success'
