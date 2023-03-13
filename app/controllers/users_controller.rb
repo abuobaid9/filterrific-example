@@ -7,7 +7,7 @@ class UsersController < ApplicationController
       params[:filterrific]
     ) or return
   
-    @users = @filterrific.find.paginate(page: params[:page], per_page: 2)
+    @users = @filterrific.find.paginate(page: params[:page], per_page: 15)
 
  
     respond_to do |format|
