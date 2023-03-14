@@ -36,3 +36,4 @@ gem 'will_paginate-bootstrap'
 gem 'simple_form'
 gem "haml-rails", "~> 2.0"
 gem 'jquery-rails'
+gem 'devise'
