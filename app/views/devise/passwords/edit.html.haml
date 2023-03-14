@@ -1,0 +1,21 @@
+%h2 Change your password
+= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }, wrapper_html: { class: 'form-wrapper' }) do |f|
+  = f.error_notification
+  = f.input :reset_password_token, as: :hidden
+  = f.full_error :reset_password_token
+  .form-inputs
+    = f.input :password,                                                                    |
+      label: "New password",                                                                |
+      required: true,                                                                       |
+      autofocus: true,                                                                      |
+      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), |
+      input_html: { autocomplete: "new-password" },                                         |
+      wrapper_html: { class: 'form-group' }                                                 |
+    = f.input :password_confirmation,               |
+      label: "Confirm your new password",           |
+      required: true,                               |
+      input_html: { autocomplete: "new-password" }, |
+      wrapper_html: { class: 'form-group' }         |
+  .form-actions
+    = f.button :submit, "Change my password", class: "button"
+= render "devise/shared/links"

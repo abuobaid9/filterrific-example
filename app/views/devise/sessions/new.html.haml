@@ -1,0 +1,23 @@
+.row
+  .columns.small-12.medium-6.medium-centered
+    .callout
+      %h2 Log in
+      = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "log-in-form"}) do |f|
+        .row
+          .columns
+            = f.input :email,                                                                    |
+              required: false,                                                                   |
+              autofocus: true,                                                                   |
+              input_html: { class: "form-control", autocomplete: "email", placeholder: "Email" } |
+        .row
+          .columns
+            = f.input :password,                                                                               |
+              required: false,                                                                                 |
+              input_html: { class: "form-control", autocomplete: "current-password", placeholder: "Password" } |
+        .row
+          .columns
+            = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+        .row
+          .columns
+            = f.button :submit, "Log in", class: "button expanded"
+      = render "devise/shared/links"

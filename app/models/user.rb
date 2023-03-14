@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
 
   filterrific(
       available_filters: [
@@ -20,6 +24,8 @@ class User < ApplicationRecord
     def decorated_created_at
       created_at.strftime("%d %b %Y, %H:%M")
     end
+
 end
+
 
   
